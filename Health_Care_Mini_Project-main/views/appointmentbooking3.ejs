@@ -1,0 +1,442 @@
+<%- include('partial/header.ejs', {data: data }); %>
+<style>
+:root {
+    --vanilla-calendar-bg-color: #fff;
+    --vanilla-calendar-border-radius: 5px;
+    --vanilla-calendar-border-color: #e7e9ed;
+    --vanilla-calendar-today-bg-color: #00ff0e;
+    --vanilla-calendar-today-color: #333;
+    --vanilla-calendar-selected-bg-color: #538fcd;
+    --vanilla-calendar-selected-color: #fff;
+    --vanilla-calendar-selected-radius: 5px;
+  }
+  
+  .vanilla-calendar *,
+  .vanilla-calendar *:before,
+  .vanilla-calendar *:after {
+    box-sizing: border-box;
+  }
+  
+  .vanilla-calendar {
+    background-color: var(--vanilla-calendar-bg-color);
+    border-radius: var(--vanilla-calendar-border-radius);
+    border: solid 1px var(--vanilla-calendar-border-color);
+    box-shadow: 0 4px 22px 0 rgba(0, 0, 0, 0.05);
+    margin: 0 auto;
+    overflow: hidden;
+    width: 300px;
+  }
+  
+  .vanilla-calendar .vanilla-calendar-btn {
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-appearance: button;
+    background: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    line-height: normal;
+    min-width: 27px;
+    outline: none;
+    overflow: visible;
+    padding: 0;
+    text-align: center;
+    &:active {
+      border-radius: var(--vanilla-calendar-border-radius);
+      box-shadow: 0 0 0 2px rgba(var(--vanilla-calendar-today-bg-color), 0.1);
+    }
+  }
+  
+  .vanilla-calendar .vanilla-calendar-header {
+    align-items: center;
+    display: flex;
+    padding: 10px;
+    text-transform: uppercase;
+  }
+  
+  .vanilla-calendar .vanilla-calendar-header svg {
+    fill: var(--vanilla-calendar-today-color);
+  }
+  
+  .vanilla-calendar .vanilla-calendar-header__label {
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .vanilla-calendar .vanilla-calendar-week {
+    background-color: var(--vanilla-calendar-selected-bg-color);
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .vanilla-calendar .vanilla-calendar-week span {
+    color: var(--vanilla-calendar-selected-color);
+    flex-direction: column;
+    flex: 0 0 14.28%;
+    font-size: 1em;
+    font-weight: bold;
+    max-width: 14.28%;
+    padding: 15px 0px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+  .vanilla-calendar .vanilla-calendar-body {
+    background-color: rgba(var(--vanilla-calendar-selected-bg-color), 0.3);
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+  }
+  
+  .vanilla-calendar .vanilla-calendar-date {
+    align-items: center;
+    background-color: #fff;
+    border-radius: var(--vanilla-calendar-border-radius);
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 14.28%;
+    max-width: 14.28%;
+    padding: 10px 0;
+  }
+  
+  .vanilla-calendar .vanilla-calendar-date--active {
+    cursor: pointer;
+  }
+  
+  .vanilla-calendar .vanilla-calendar-date--selected {
+    background-color: var(--vanilla-calendar-selected-bg-color);
+    color: var(--vanilla-calendar-border-color);
+  }
+  
+  .vanilla-calendar .vanilla-calendar-date--disabled {
+    border-radius: 0;
+    cursor: not-allowed;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  
+  .vanilla-calendar .vanilla-calendar-date--today {
+    background-color: var(--vanilla-calendar-today-bg-color);
+    color: var(--vanilla-calendar-today-color);
+  }
+  
+  .vanilla-calendar .vanilla-calendar-date--disabled-today {
+    background-color: var(--vanilla-calendar-today-bg-color);
+    color: var(--vanilla-calendar-today-color);
+    border-radius: 0;
+    cursor: not-allowed;
+    opacity: 0.2;
+    pointer-events: none;
+  }
+  
+  /*  above code is github for calender */
+
+  .headstyle {
+    /* background-color: #007bff; */
+   
+    font-size: 12px;
+    /* padding: 15px; */
+    margin-top: 30px;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  .user-login-tab {
+    
+    margin-top: 20px;
+  }
+.row{
+}
+  /* .nav-tabs {
+    border-bottom: 2px solid #dee2e6;
+    margin-top: 15px;
+  } */
+
+  .nav-link {
+    color: #007bff;
+    cursor: pointer;
+    
+  }
+
+  .nav-link.active {
+    color: black;
+    font-size:20px;
+    /* background-color: #007bff; */
+    /* border-color: #dee2e6 #dee2e6 #fff; */
+  }
+
+  .form-row {
+    /* margin-top: 20px; */
+    
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-group {
+    margin-bottom: 0;
+  }
+
+   .container{
+    margin-top: 100px;
+   }
+
+  .form-row {
+    border-radius: 5px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* background-color: #fff; */
+  }
+
+  .area-buttons {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #myCalendar {
+    margin-bottom: 20px;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    /* background-color: #f8f9fa; */
+  }
+  </style>
+<div class="contact-area pt_60 pb_90">
+    <div class="container">
+             
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane active" id="patientRegistration" role="tabpanel">
+                <form
+                  action="/patienthome/bookappointment/<%= data.patientid %>/<%= data.disease %>/<%= data.doctorid %>"
+                  method="POST" accept-charset="utf-8">
+                  <div class="form-row row mt_20">
+                    <div class="form-row row mt_20 text-center">
+                      <div class="form-group col-12">
+                        <div class="mb-3 mt-3">
+                          <p style="text-align: center; font-size: 15px;">Please select the date</p>
+                          <div class="content">
+
+                            <div class="area-buttons">
+                              <button class="info" name="pastDates" style="display: none;">Disable past dates</button>
+                              <button class="info" name="availableDates" style="display: none;">Set available
+                                dates</button>
+                              <button class="info" name="availableWeekDays" style="display: none;">Set available
+                                weekdays</button>
+                            </div>
+
+                            <div id="myCalendar" class="vanilla-calendar" style="margin-bottom: 20px"></div>
+                            <div style="display: table;">
+                              <p style="margin-left: 5.4rem; display: table-cell;">Chosen Date: </p><input type="text"
+                                id="ChosenConvertedDate" name="ChosenConvertedDate" style="display: table-cell;"
+                                  required></input><br />
+                              <br>
+                              <p style="margin-left: 5.4rem; display: table-cell;">Time: </p><input type="text"
+                                id="ChosenTime" name="ChosenTime" style="display: table-cell;"  
+                                required></input>
+                              <br /><input type="text" id="ChosenDate" name="ChosenDate"
+                                style="display: none;"></input>
+                              <div id="DataId" data-sortedpatient='<%= data.sortedpatient %>'
+                                data-currentappointment="<%= data.user.CurrentAppointmentDate %>"
+                                data-currentdisease="<%= data.user.CurrentDisease %>"
+                                data-status="<%= data.user.status %>"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group col-8 text-center mb-3">
+                        <button type="submit" class="btn" name="form_registration"> Next </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Footer-->
+  <%- include('partial/footer.ejs'); %>
+  <script src="/js/cal.js"> </script>
+  <script>
+    function ConvertChosenTime(str) {
+      var date1 = new Date(str),
+        hour = date1.getHours(),
+        minutes = date1.getMinutes(),
+        end = "AM";
+      if (hour >= 12) {
+        end = "PM";
+      }
+      var JoinedTime = [hour, minutes].join(":");
+      return (JoinedTime + " " + end);
+    }
+    function convert(str) {
+      var date = new Date(str),
+        mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+        day = ("0" + date.getDate()).slice(-2);
+      return [day, mnth, date.getFullYear()].join("-");
+    }
+
+    var i = 0;
+    var txt = 'WELCOME TO MEDBUDDY';
+    var speed = 60;
+
+    function typeWriter() {
+      if (i < txt.length) {
+        document.getElementById("typeit").innerHTML += txt.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+
+    let pastDates = true, availableDates = false, availableWeekDays = false
+
+    let calendar = new VanillaCalendar({
+      selector: "#myCalendar",
+      months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+      shortWeekday: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      onSelect: (data, elem) => {
+        let AllPatient = document.getElementById("DataId");
+        let allpatient = AllPatient.getAttribute('data-sortedpatient');
+        let CurrentAppointment = AllPatient.getAttribute('data-currentappointment');
+        let listpatient = JSON.parse(allpatient);
+
+        let FinalDate;
+        let StartTime = 4.5 * 60 * 60 * 1000;
+        let found = 0;
+
+        // CurrentBookingDate: chosen date on calendar
+        let CurrentBookingDate = new Date(data.date);
+
+        let ModifiedCurrentBookingDate = new Date(CurrentBookingDate.getTime() - CurrentBookingDate.getTime() % 86400000);
+
+        for (const property in listpatient) {
+          let LoopBookingDate = new Date(property);
+
+          if (ModifiedCurrentBookingDate.getTime() == LoopBookingDate.getTime()) {
+            found = 1;
+            let PreviousPatientNumber = listpatient[property];
+            let PreviousPatientTime = PreviousPatientNumber * 15 * 60 * 1000;
+            let FinalMilliseconds = ModifiedCurrentBookingDate.getTime() + StartTime + PreviousPatientTime;
+            FinalDate = new Date(FinalMilliseconds);
+
+          }
+        }
+
+        if (found == 0) {
+          let FinalMilliseconds = ModifiedCurrentBookingDate.getTime() + StartTime;
+          FinalDate = new Date(FinalMilliseconds);
+        }
+        document.getElementById("ChosenDate").value = FinalDate;
+        document.getElementById("ChosenTime").value = ConvertChosenTime(FinalDate);
+        document.getElementById("ChosenConvertedDate").value = convert(FinalDate);
+      }
+    })
+
+    var PastDateFunction = function () {
+      pastDates = !pastDates
+      calendar.set({ pastDates: pastDates })
+      btnPastDates.innerText = `${(pastDates ? 'Disable' : 'Enable')} past dates`
+      AvailableWeekDaysFunction()
+    }
+
+    var AvailableWeekDaysFunction = function () {
+      availableWeekDays = !availableWeekDays
+      btnAvailableWeekDays.innerText = `${(availableWeekDays ? 'Clear available weekdays' : 'Set available weekdays')}`
+      if (!availableWeekDays) {
+        calendar.set({ availableWeekDays: [], datesFilter: false })
+        return
+      }
+      let days = [{
+        day: 'monday'
+      }, {
+        day: 'tuesday'
+      }, {
+        day: 'wednesday'
+      }, {
+        day: 'thursday'
+      }, {
+        day: 'friday'
+      }]
+      calendar.set({ availableWeekDays: days, availableDates: [], datesFilter: true })
+      typeWriter();
+    }
+
+    let btnPastDates = document.querySelector('[name=pastDates]')
+    btnPastDates.addEventListener('click', function PastDateFunction() {
+      pastDates = !pastDates
+      calendar.set({ pastDates: pastDates })
+      btnPastDates.innerText = `${(pastDates ? 'Disable' : 'Enable')} past dates`
+    })
+
+    let btnAvailableDates = document.querySelector('[name=availableDates]')
+    btnAvailableDates.addEventListener('click', () => {
+      availableDates = !availableDates
+      btnAvailableDates.innerText = `${(availableDates ? 'Clear available dates' : 'Set available dates')}`
+      if (!availableDates) {
+        calendar.set({ availableDates: [], datesFilter: false })
+        return
+      }
+      let dates = () => {
+        let result = []
+        for (let i = 1; i < 15; ++i) {
+          if (i % 2) continue
+          let date = new Date(new Date().getTime() + (60 * 60 * 24 * 1000) * i)
+          result.push({ date: `${String(date.getFullYear())}-${String(date.getMonth() + 1).padStart(2, 0)}-${String(date.getDate()).padStart(2, 0)}` })
+        }
+        return result
+      }
+      calendar.set({ availableDates: dates(), availableWeekDays: [], datesFilter: true })
+    })
+
+    let btnAvailableWeekDays = document.querySelector('[name=availableWeekDays]')
+    btnAvailableWeekDays.addEventListener('click', function AvailableWeekDaysFunction() {
+      availableWeekDays = !availableWeekDays
+      btnAvailableWeekDays.innerText = `${(availableWeekDays ? 'Clear available weekdays' : 'Set available weekdays')}`
+      if (!availableWeekDays) {
+        calendar.set({ availableWeekDays: [], datesFilter: false })
+        return
+      }
+      let days = [{
+        day: 'monday'
+      }, {
+        day: 'tuesday'
+      }, {
+        day: 'wednesday'
+      }, {
+        day: 'thursday'
+      }, {
+        day: 'friday'
+      }]
+      calendar.set({ availableWeekDays: days, availableDates: [], datesFilter: true })
+    })
+
+    var AllPatient = document.getElementById("DataId");
+    var CurrentAppointment = AllPatient.getAttribute('data-currentappointment');
+
+    let DataId = document.getElementById("DataId");
+    let PatientCurrentDisease = DataId.getAttribute('data-currentdisease');
+    let PatientCurrentStatus = DataId.getAttribute('data-status');
+
+    window.onload = PastDateFunction();
+
+  </script>

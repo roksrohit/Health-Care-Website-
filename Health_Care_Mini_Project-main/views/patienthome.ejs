@@ -1,0 +1,144 @@
+<style>
+      .custom-about-page {
+    text-align: left;
+    margin-top: 100px;
+}
+
+.custom-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.custom-faq-group {
+    margin-top: 30px;
+}
+
+.custom-faq-item {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.custom-faq-header {
+    padding: 10px;
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
+
+.custom-faq-body {
+    padding: 10px;
+    background-color: #fff;
+     
+}
+.custom-faq-body{
+    font-size: 15px;
+}
+.custom-faq-button {
+    width: 100%;
+    text-align: left;
+    border: none;
+    background-color: transparent;
+    color: #007bff;
+}
+
+.custom-faq-button:hover {
+    color: #0056b3;
+}
+ 
+</style>
+
+<%- include('partial/header.ejs', {data: data }); %>
+
+<div class="custom-about-page pt_60 pb_30 ">
+    <div class="custom-container">
+        <div class="custom-row">
+            <div class="custom-col-md-12">
+                <h1>Welcome to our patient portal </h1>
+                <h1>Hi <%= data.user.name %></h1>
+
+                <div class="custom-faq-group headstyle mt-30">
+                    <div id="custom-accordion">
+                        <div class="custom-faq-item card">
+                            <div class="custom-faq-header" id="custom-heading1">
+                                <button class="custom-faq-button" data-toggle="collapse" data-target="#custom-collapse1"
+                                    aria-expanded="true" aria-controls="custom-collapse1"><i class="fa fa-caret-right"></i>
+                                    Book An Appointment </button>
+                            </div>
+                            <div id="custom-collapse1" class="collapse show" aria-labelledby="custom-heading1"
+                                data-parent="#custom-accordion">
+                                <div class="custom-faq-body">
+                                    <p>
+                                        <a href="/patienthome/bookappointment/<%= data.user._id%>"
+                                            class="btn btn-success btn-large">Book an Appointment</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="custom-faq-item card">
+                            <div class="custom-faq-header" id="custom-heading3">
+                                <button class="custom-faq-button collapsed" data-toggle="collapse" data-target="#custom-collapse3"
+                                    aria-expanded="true" aria-controls="custom-collapse3"><i class="fa fa-caret-right"></i>
+                                    Current Appointment Details</button>
+                            </div>
+
+                            <div id="custom-collapse3" class="collapse" aria-labelledby="custom-heading3"
+                                data-parent="#custom-accordion">
+                                <div class="custom-faq-body">
+                                    <h2>Your Current Appointments with us</h2>
+                                    <br>
+                                    <ol>
+                                        <% if(data.futureappointment !=undefined && data.futureappointment.length> 0) { %>
+                                            <% data.futureappointment.forEach(function(item){ %>
+                                                <p>
+                                                    <li>
+                                                        <b>Appointment Date: <%= item.AppointmentDate %></b>
+                                                    </li>
+                                                    <b>Doctor Name:</b>
+                                                    <%= item.DoctorName %> <br />
+                                                    <b>Appointment Time:</b>
+                                                    <%= item.AppointmentTime %> <br />
+                                                    <b>Disease: </b>
+                                                    <%= item.Disease %> <br />
+                                                    <b>Status: </b>
+                                                    <%= item.Status %>
+                                                </p>
+                                                <br />
+                                            <% }) %>
+                                    </ol>
+                                    <% }else{ %>
+                                        <p>
+                                            Currently there is no appointment !!!
+                                        </p>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="custom-faq-item card">
+                            <div class="custom-faq-header" id="custom-heading6">
+                                <button class="custom-faq-button collapsed" data-toggle="collapse" data-target="#custom-collapse6"
+                                    aria-expanded="true" aria-controls="custom-collapse5"><i class="fa fa-caret-right"></i>
+                                    Update Credentials</button>
+                            </div>
+
+                            <div id="custom-collapse6" class="collapse" aria-labelledby="custom-heading6"
+                                data-parent="#custom-accordion">
+                                <div class="custom-faq-body">
+                                    <p>
+                                        <a href="/patienthome/<%= data.user._id%>/edit" class="btn btn-success btn-large">Update
+                                            Credentials</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+ <%- include('partial/footer.ejs'); %>

@@ -1,0 +1,156 @@
+  
+<style>
+    .custom-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.custom-form {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.custom-tab-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.custom-tab-item {
+    display: inline-block;
+}
+
+.custom-tab-link {
+    text-decoration: none;
+    color: #000;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.custom-tab-link.active {
+    background-color: #0056b3;
+}
+
+.custom-tab-content {
+    margin-top: 10px;
+}
+
+.custom-tab-pane {
+    display: none;
+}
+
+.custom-tab-pane.active {
+    display: block;
+}
+
+.custom-form-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.custom-label-input {
+    flex: 1 1 calc(50% - 10px);
+    margin-bottom: 20px;
+}
+
+.custom-label-input p {
+    font-weight: bold;
+}
+
+.custom-label-input select,
+.custom-label-input input,
+.custom-label-input textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.custom-label-input button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.custom-label-input button:hover {
+    background-color: #0056b3;
+}
+
+</style> 
+<!--Navbar Start-->
+<%- include('partial/header.ejs'); %>
+
+
+<div class="custom-container">
+    <div class="custom-form">
+        <ul class="custom-tab-list">
+            <li class="custom-tab-item">
+                <a class="custom-tab-link active" data-toggle="tab" href="#" role="tab">Doctors Registration</a>
+            </li>
+        </ul>
+
+        <div class="custom-tab-content">
+            <div class="custom-tab-pane active" id="doctorRegistration" role="tabpanel">
+                <form action="/doctorregistration" method="POST" accept-charset="utf-8">
+                    <div class="custom-form-row">
+                        <div class="custom-label-input">
+                            <p>Name</p>
+                            <input type="text" class="form-control" placeholder="Name" name="name" autocomplete="off" required>
+                        </div>
+                        <div class="custom-label-input">
+                            <p>Password</p>
+                            <input type="password" class="form-control" placeholder="Password" name="password" autocomplete="off" required>
+                        </div>
+                        <div class="custom-label-input">
+                            <p>Phone Number</p>
+                            <input type="tel" class="form-control" placeholder="Phone Number (format: +91'xxxxxxxxxx')" name="phone" pattern="^\d{10}$" minlength="10" autocomplete="off" required>
+                        </div>
+                        <div class="custom-label-input">
+                            <p>Email Id</p>
+                            <input type="email" class="form-control" placeholder="Email Address" name="username" autocomplete="off" required>
+                        </div>
+                        <input type="hidden" class="form-control" value="doctor" name="usertype" autocomplete="off">
+                        <div class="custom-label-input">
+                            <div class="mb-3">
+                                <p>Please enter a Specialization in the textarea</p>
+                                <select id="specialization" name="specialization" required>
+                                    <option value="Ent">ENT Specialist</option>
+                                    <option value="Skin">Skin Specialist</option>
+                                    <option value="Dentist">Dentist</option>
+                                    <option value="Heart">Heart Specialist</option>
+                                    <option value="Lung">Lung Specialist</option>
+                                    <option value="Neuro">Neuro Specialist</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="custom-label-input">
+                            <div class="mb-3">
+                                <p>Please enter a Address of hospital/clinic in the textarea</p>
+                                <textarea class="form-control validationTextarea" placeholder="Hospital/Clinic Address" name="address" autocomplete="off" required></textarea>
+                            </div>
+                        </div>
+                        <div class="custom-label-input text-center">
+                            <button type="submit" class="custom-btn" name="form_login">Register</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- ddddddd -->
+<%- include('partial/footer.ejs'); %>
+             

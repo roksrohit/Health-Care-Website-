@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/Hospital.css">
+    <title>HealthCare WebSite</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<style>.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+}
+
+.container a:hover, .dropdown:hover .dropbtn {
+    background-color: rgb(233, 217, 217);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: solid #ccc;
+}
+
+.patient-dropdown, .doctor-dropdown {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.patient-dropdown:last-child, .doctor-dropdown:last-child {
+  border-bottom: none;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding:  10px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+ </style>
+
+<header class="header">
+    <a href="#" class="logo"><i class="fas fa-heartbeat"></i> HealthCare.</a>
+
+    <nav class="navbar">
+        <a href="/">home</a>
+        <a href="#services">services</a>
+        <a href="/about">about</a>
+        <a href="/faq">FAQ</a>
+        <div class="dropdown">
+          <a href="#" class="dropbtn">Account <i class="fas fa-caret-down"></i></a>
+          <div class="dropdown-content">
+            <div class="patient-dropdown">
+                <a href="#" class="dropbtn">Patient <i class="fas fa-caret-down"></i></a>
+                
+              <% if (data.user==undefined ){ %>
+                <a  href="/patientregistration">REGISTRATION</a>
+                <a  href="/patientlogin">LOGIN</a>
+              <% } else if(data.user.usertype=="patient" ) { %>
+                <a  href="/patienthome">PATIENT HOME</a>
+                <a  href="/logout">LOGOUT</a>
+              <% } else { %>
+                <a  href="/patientregistration">REGISTRATION</a>
+                <a  href="/patientlogin">LOGIN</a>
+              <% } %>
+              
+            </div>
+            <div class="doctor-dropdown">
+                <a href="#" class="dropbtn">Doctor <i class="fas fa-caret-down"></i></a>
+                
+              <% if (data.user==undefined ){ %>
+                <a  href="/doctorregistration">REGISTRATION</a>
+                <a  href="/doctorlogin">LOGIN</a>
+              <% } else if(data.user.usertype=="doctor" ) { %>
+                <a  href="/doctorhome">DOCTOR HOME</a>
+                <a  href="/logout">LOGOUT</a>
+              <% } else { %>
+                <a  href="/doctorregistration">REGISTRATION</a>
+                <a  href="/doctorlogin">LOGIN</a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </nav>
+    <div id="menu-btn" class="fas fa-bars"></div>
+
+</header>

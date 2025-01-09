@@ -1,0 +1,147 @@
+ 
+ 
+
+<%- include('partial/header.ejs'); %>
+
+<style>
+  .custom-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.custom-form {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.custom-tab-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.custom-tab-item {
+    display: inline-block;
+}
+
+.custom-tab-link {
+    text-decoration: none;
+    color: #000;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.custom-tab-link.active {
+    background-color: #0056b3;
+}
+
+.custom-tab-content {
+    margin-top: 10px;
+}
+
+.custom-tab-pane {
+    display: none;
+}
+
+.custom-tab-pane.active {
+    display: block;
+}
+
+.custom-form-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.custom-label-input {
+    flex: 1 1 calc(50% - 10px);
+    margin-bottom: 20px;
+}
+
+.custom-label-input label {
+    font-weight: bold;
+}
+
+.custom-label-input input,
+.custom-label-input textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.custom-label-input button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.custom-label-input button:hover {
+    background-color: #0056b3;
+}
+
+</style>
+
+<div class="custom-container">
+  <div class="custom-form">
+      <ul class="custom-tab-list">
+          <li class="custom-tab-item">
+              <a class="custom-tab-link active" href="#patientRegistration">Patient Registration</a>
+          </li>
+      </ul>
+
+      <div class="custom-tab-content">
+          <div class="custom-tab-pane active" id="patientRegistration">
+              <form action="/patientregistration" method="POST" accept-charset="utf-8">
+                  <div class="custom-form-row">
+                      <div class="custom-label-input">
+                          <label for="name">Name</label>
+                          <input type="text" id="name" placeholder="Name" name="name" autocomplete="off" required>
+                      </div>
+                      <div class="custom-label-input">
+                          <label for="dob">Date of Birth</label>
+                          <input type="text" id="dob" placeholder="MM/DD/YYYY" onfocus="(this.type='date')"
+                              onblur="(this.type='text')" name="dob" autocomplete="off" required>
+                      </div>
+                      <div class="custom-label-input">
+                          <label for="address">Address</label>
+                          <textarea id="address" placeholder="Address" name="address" autocomplete="off" required></textarea>
+                      </div>
+                      <div class="custom-label-input">
+                          <label for="phonenum">Phone Number</label>
+                          <input type="tel" id="phonenum" placeholder="Phone Number (format:+91'xxxxxxxxxx')"
+                              name="phone" pattern="^\d{10}$" minlength="10" autocomplete="off" required>
+                      </div>
+                      <div class="custom-label-input">
+                          <label for="email">Email Address</label>
+                          <input type="email" id="email" placeholder="Email Address" name="username" autocomplete="off" required>
+                      </div>
+                      <div class="custom-label-input">
+                          <label for="password">Set Your Password</label>
+                          <input type="password" id="password" placeholder="Password" name="password" autocomplete="off" required>
+                      </div>
+                      <div class="custom-label-input">
+                          <input type="checkbox" id="exampleCheck1" required>
+                          <label for="exampleCheck1">I have read the terms and conditions</label>
+                      </div>
+                      <div class="custom-label-input text-center">
+                          <button type="submit" class="custom-btn" name="form_registration">Register</button>
+                      </div>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- ddddddd -->
+<%- include('partial/footer.ejs'); %>
+             

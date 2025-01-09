@@ -1,0 +1,199 @@
+<style>
+/* Common styling for both Patient and Doctor Portals */
+.about-page {
+    text-align: left;
+    padding-top: 60px;
+    padding-bottom: 30px;
+    margin-top: 50px;
+}
+.container{
+ 
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Styling for the header */
+.about-page h1 {
+    color: #3498db; 
+}
+
+
+.about-page h3 {
+    color: #2ecc71; /* Green color for the greeting */
+}
+
+/* Styling for FAQ items */
+.faq-item {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden; /* Ensure rounded corners are applied */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.faq-header {
+    padding: 15px;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.faq-body {
+    text-align: left;
+    padding: 15px;
+    font-size: 15px;
+    text-align: left;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0 0 5px 5px;  
+    margin-top: 10px;
+    transition: border-color 0.3s ease;  
+}
+
+.faq-header:hover {
+    background-color: #e9ecef; /* Lighter background on hover */
+}
+
+.faq-button {
+    width: 100%;
+    text-align: left;
+    border: none;
+    background-color: transparent;
+    /* color: #007bff; */
+    cursor: pointer;
+}
+
+.faq-button:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
+
+ 
+</style>
+<%- include('partial/header.ejs', {data: data }); %>
+
+<div class="about-page pt_60 pb_30">
+    <div class="container col-8">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Welcome to our doctor portal </h1><br>
+                <h2>Hi <%= data.user.name %></h2> <br>
+
+                <div class="faq-group headstyle mt-30 contact-form">
+                    <div id="accordion ">
+                        <div class="faq-item card">
+                            <div class="faq-header" id="heading1">
+                                <button class="faq-button " data-toggle="collapse" data-target="#collapse1" aria-expanded="true"
+                                    aria-controls="collapse1"><i class="fa fa-caret-right"></i> View Current Appointments </button>
+                            </div>
+                            <div id="collapse1" class="collapse show" aria-labelledby="heading1" data-parent="#accordion">
+                                <div class="faq-body">
+                                    <ol>
+                                        <% if(data.futureappointment !=undefined && data.futureappointment.length> 0) { %>
+                                            <% data.futureappointment.forEach(function(item){ %>
+                                                <div class="col-lg-12">
+                                                    <li><b>Patient Name: </b>
+                                                        <%= item.PatientName %>
+                                                    </li>
+                                                    <b>Patient Phone Number: </b>
+                                                    <%= item.PatientPhone %> <br />
+                                                    <b>Appointment Status: </b>
+                                                    <%= item.Status %> <br />
+                                                    <b>Appointment Date: </b>
+                                                    <%= item.AppointmentDate %> <br />
+                                                    <b>Appointment Time: </b>
+                                                    <%= item.AppointmentTime %> <br />
+                                                    <a href="/doctorhome/<%= item.AppointmentId %>/accept"
+                                                        class="btn btn-xs btn-confirm">Confirm Appointment</a> &nbsp;
+                                                    <a href="/doctorhome/<%= item.AppointmentId %>/reject"
+                                                        class="btn btn-xs btn-danger">Reject Appointment</a> <br />
+                                                </div>
+                                                <br />
+                                            <% }); %>
+                                    </ol>
+                                    <% }else{ %>
+                                        <p>
+                                            Currently there is no appointment !!!
+                                        </p>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="faq-item card">
+                            <div class="faq-header" id="heading2">
+                                <button class="faq-button collapsed" data-toggle="collapse" data-target="#collapse2"
+                                    aria-expanded="true" aria-controls="collapse2"><i class="fa fa-caret-right"></i> View Past
+                                    Appointments</button>
+                            </div>
+
+                            <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordion">
+                                <div class="faq-body">
+                                    <ol>
+                                        <% if( data.pastappointment !=undefined && data.pastappointment.length) { %>
+                                            <% data.pastappointment.forEach(function(item){ %>
+                                                <div class="col-lg-12">
+                                                    <li><b>Patient Name: </b>
+                                                        <%= item.PatientName %>
+                                                    </li>
+                                                    <b>Patient Phone Number: </b>
+                                                    <%= item.PatientPhone %> <br />
+                                                    <b>Appointment Status: </b>
+                                                    <%= item.Status %> <br />
+                                                    <b>Appointment Date: </b>
+                                                    <%= item.AppointmentDate %> <br />
+                                                    <b>Appointment Time: </b>
+                                                    <%= item.AppointmentTime %> <br />
+                                                    <% if(item.PrescriptionId !=null) { %>
+                                                        <b>Prescription</b> <br />
+                                                        <b>Symptoms: </b>
+                                                        <%= item.Symptoms %> <br />
+                                                        <b>Tests: </b>
+                                                        <%= item.Tests %> <br />
+                                                        <b>Medicines: </b>
+                                                        <%= item.Medicines %> <br />
+                                                        <b>Remarks: </b>
+                                                        <%= item.Remarks %> <br />
+                                                        <b>Doctor Signature: </b> <br />
+                                                        <img src="<%= item.DoctorSignature %>" width="100" heigth="100"
+                                                            alt="signature"> <br /> <br />
+                                                    <% }else{ %>
+                                                        <a href="/doctorhome/<%= item.PatientId %>/<%= item.AppointmentId %>/addprescription"
+                                                            class="btn btn-xs btn-confirm">Add Prescription</a> <br />
+                                                    <% } %>
+                                                </div>
+                                            <% }); %>
+                                    </ol>
+                                    <% }else{ %>
+                                        <p>
+                                            Currently there is no appointment !!!
+                                        </p>
+                                    <% } %>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item card">
+                            <div class="faq-header" id="heading3">
+                                <button class="faq-button collapsed" data-toggle="collapse" data-target="#collapse3"
+                                    aria-expanded="true" aria-controls="collapse3"><i class="fa fa-caret-right"></i> Update
+                                    Credentials</button>
+                            </div>
+
+                            <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordion">
+                                <div class="faq-body">
+                                    <p>
+                                        <a href="/doctorhome/<%= data.user._id%>/edit" class="btn btn-primary btn-large">Update
+                                            Credentials</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="faq-item card">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

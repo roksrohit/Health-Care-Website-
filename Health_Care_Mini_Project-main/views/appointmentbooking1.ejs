@@ -1,0 +1,114 @@
+<style>
+ .contact-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.custom-box {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.contact-area{
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 150px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.custom-nav-tabs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.custom-nav-item {
+    font-size: 20px;
+    margin-bottom: 20px;
+        display: inline-block;
+}
+
+.custom-nav-link {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 4px 4px 0 0;
+}
+
+.custom-nav-link.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.custom-form-label {
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.custom-select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.custom-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.custom-btn:hover {
+    background-color: #0056b3;
+}
+
+
+
+</style>
+<%- include('partial/header.ejs', {data: data }); %>
+
+<div class="contact-area">
+    <div class="row justify-content-center">
+        <div class="contact-form headstyle user-login-tab pt_0">
+            <ul class="custom-nav-tabs mt_15" role="tablist">
+                <li class="custom-nav-item">
+                    <a class="custom-nav-link active" data-toggle="tab" href="#" role="tab">SPECIFY DISEASE</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <form action="/patienthome/bookappointment/<%= data.patientid%>" method="POST" accept-charset="utf-8">
+                        <div class="custom-mb-3">
+                            <label for="disease" class="custom-form-label">Select the Disease:</label>
+                            <select id="disease" name="disease" required required class="custom-select">
+                                <option value="Ent">ENT Specialist</option>
+                                <option value="Skin">Skin Specialist</option>
+                                <option value="Dentist">Dentist</option>
+                                <option value="Heart">Heart Specialist</option>
+                                <option value="Lung">Lung Specialist</option>
+                                <option value="Neuro">Neuro Specialist</option>
+                            </select>
+                        </div>
+                    <div class="form-group col-md-12 text-center custom-mb-3">
+                        <button type="submit" class="custom-btn" name="form_registration">Next</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<%- include('partial/footer.ejs'); %>

@@ -1,0 +1,74 @@
+<style>
+.text-center {
+    text-align: center;
+}
+
+u {
+    text-decoration: underline;
+}
+
+.doctor-list {
+    padding-left: 5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.doctor-list-ol {
+    list-style: none;
+    padding: 0;
+}
+
+.doctor-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.doctor-info {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+</style>
+
+
+
+<%- include('partial/header.ejs', {data: data }); %>
+
+<div class="text-center">
+    <u>
+        <h2>SELECT A DOCTOR</h2>
+    </u>
+</div>
+<br />
+
+<div class="doctor-list">
+    <ol class="doctor-list-ol">
+        <% data.doctor.forEach(function(item){ %>
+        <li class="doctor-item">
+            <p class="doctor-info"><b>Doctor Name:</b>  <%= item.name %></p>
+            <p class="doctor-info"> <b>Doctor Address:</b> <%= item.address %></p>
+            <p class="doctor-info"><b>Phone Number:</b> <%= item.phone %></p>
+            <p class="doctor-info"><b>specialization:</b> <%= item.specialization %></p>
+
+
+            <a href="/patienthome/bookappointment/<%= data.patientid %>/<%= data.patientdisease %>/<%= item._id %>"
+                class="btn ">SELECT DOCTOR</a>
+        </li>
+        <% }); %>
+    </ol>
+</div>

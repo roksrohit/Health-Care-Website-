@@ -1,0 +1,387 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&display=swap');
+
+:root{
+    --green:#3498DB;
+    --black:#444;
+    --light-color:#777;
+    --box-shadow:.5rem .5rem rgba(22,160,133,.2);
+    --text-shadow:.4rem .5rem rgba(0,0,0, .1);
+    --border:.2rem solid var(--green);
+}
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    text-transform: capitalize;
+    transition: all .2s ease-out;
+    text-decoration: none;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 7rem;
+    scroll-behavior: smooth;
+
+}
+
+/* section home ka styling */
+section{
+    padding: 9rem 9%;
+}
+
+/* section::nth-child(even){
+    
+} */
+.btn{
+    display: inline-block;
+    margin-top: 1rem;
+    padding: .5rem;
+    padding-left: 1rem;
+    border: var(--border);
+    border-radius: var(--box-shadow);
+    color: var(--green);
+    cursor: pointer;
+    font-size: 1.7rem;
+}
+
+.btn span{
+    padding: .7rem 1rem;
+    border-radius: .5rem;
+    background-color: var(--green);
+    color: #fff;
+    margin-left: .5rem;
+}
+.btn:hover{             /* contact us ko hover kiye hai */
+    background-color: var(--green);
+    color: #fff;
+}
+.btn:hover span{
+    color: var(--green);
+    background-color: #fff;
+    margin-left: 1rem;
+}
+/* section home ka styling is end */
+
+
+/* navbar styling is start */
+.header{
+    padding: 2rem 9%;
+    position: fixed;             /*header ko position fixed diye hai so abhi ke liye ye apna position chor diya hoga so iske niche wala upper show ho raha hoga */
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    box-shadow: 0 .5rem 1.5rem rgba(0,0,0, .1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+}
+.header .logo{
+    font-size: 2.5rem;
+    color: var(--black);
+}
+.header .logo i{
+    font-size: 2.5rem;
+    color: var(--green);
+}
+.header .navbar a{
+    font-size: 1.7rem;
+    color: var(--light-color);
+    margin-left: 2rem;        /*left se margin sab par lag gaya hence beech me gap aa gaya hai.*/
+}
+.header .navbar a:hover{
+    color: var(--green);
+}
+#menu-btn{
+
+    font-size: 2.5rem;
+    border-radius: .5rem;
+    background-color: #eee;
+    color: var(--green);
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+/* navbar styling is end */
+
+
+/*home styling is start i.e 1st section ka */
+.home{
+    /* background: #f3eded; */
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding-top: 10rem;
+
+}
+.home .image{
+    flex: 1 1 45 rem;           /*flex ka shorthand property hai*/
+}
+.home .image img{
+    width: 100%;
+}
+
+.home .content{
+    flex:1 1 45rem;
+}
+.home .content h3{
+    font-size: 4.5rem;
+    color: var(--black);
+    line-height: 1.8;
+    text-shadow: var(--text-shadow);
+}
+.home .content p{
+    font-size: 1.7rem;
+    color: var(--light-color);
+    line-height: 1.8;
+    padding: 1rem
+}
+/* home styling is end i.e first section ka */
+
+/*icons styling is start */
+.icons-container{
+
+    /*display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; */
+
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit,minmax(20rem,1fr));
+    padding-top: 5rem;
+    padding-bottom: 5rem; 
+    background: #e6e1e1;
+
+}
+.icons-container .icons{
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    border-radius: .5rem;
+    text-align: center;
+    padding: 2.5rem;
+}
+.icons-container .icons i{
+    font-size: 4.5rem;
+    color: var(--green);
+    padding-bottom: .7rem;
+}
+.icons-container .icons h3{
+    font-size: 4.5rem;
+    color: var(--black);
+    padding: .5rem 0;
+    text-shadow: var(--text-shadow);
+}
+.icons-container .icons p{
+    font-size: 1.7rem;
+    color: var(--light-color);
+}
+/* icon styling end */
+
+
+/* services styling is start */
+.services .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(27rem,1fr));
+    gap: 2rem;
+
+}
+.services .box-container .box{
+    background: #fff;
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    padding: 2.5rem;
+}
+.heading{
+    text-align: center;
+    padding-bottom: 2rem;
+    text-shadow: var(--text-shadow);
+    text-transform: uppercase;
+    color: var(--black);
+    font-size: 5rem;
+    letter-spacing: .4rem;
+}
+.heading span{
+    text-transform: uppercase;
+    color: var(--green);
+}
+.services .box-container .box i{
+    color: var(--green);
+    font-size: 5rem;
+}
+.services .box-container .box h3{
+    color: var(--black);
+    font-size: 2.5rem;
+}
+.services .box-container .box p{
+    color: var(--light-color);
+    font-size: 1.4rem;
+}
+/* service styling is end */
+
+
+/* doctors styling is start */
+.doctors .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(27rem,1fr));
+    gap: 2rem;
+}
+.doctors .box-container .box{
+    text-align: center;
+    background:#fff;
+    border: var(--border);
+    border-radius: var(--border);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+}
+.doctors .box-container .box img{
+    height: 20rem; 
+    border: var(--border);
+    border-radius: .5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem ;
+}
+
+.doctors .box-container .box h3{
+    color: var(--black);
+    font-size: 2.5rem;
+}
+.doctors .box-container .box span{
+    color: var(--green);
+    font-size: 1.5rem;
+}
+.doctors .box-container .box .share{
+    padding-top: 2rem;
+}
+.doctors .box-container .box .share a{
+    height: 4rem;
+    width: 4rem;
+    line-height: 4.5rem;
+    font-size: 2rem;
+    border-radius:.5rem;
+    border: var(--border);
+    margin: .3rem;
+}
+.doctors .box-container .box .share a:hover{
+    background: var(--green);
+    color: #fff;
+    box-shadow: var(--box-shadow);
+}
+
+
+
+
+
+/* media Quarry */
+@media (max-width:991px){
+
+    html{
+        font-size: 55%;
+    }
+    .header{
+        padding: 2rem;
+    }
+    section{
+        padding: 2rem;
+    }
+}
+
+@media (max-width:768px){
+    #menu-btn{
+        display:initial;
+    }
+    .header .navbar{
+        position: absolute;
+        top: 115%; right: 2rem;
+        border-radius: .5rem;
+        box-shadow: var(--box-shadow);
+        border: var(--border);
+        width: 30rem;
+        background: #fff;
+        transform: scale(0); 
+        opacity: 0; 
+        transform-origin: top right;
+        transition: none;
+    }
+
+    .header .navbar.active{
+        transform: scale(1);
+        opacity: 1;
+        transition: .2s ease-out;
+    }
+    .header .navbar a{
+        font-size: 2rem;
+        display: block;
+        margin: 2.5rem;
+    }
+}
+
+@media (max-width:450px){
+
+    html{
+        font-size: 50%;
+    }
+    .header{
+        padding: 2rem;
+    }
+}
+/*nab bar media Quarry end */
+
+footer {
+    background-color: #333;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 0;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  
+  .footer-section {
+    padding: 0 20px;
+  }
+  
+  .footer-section h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .footer-section p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  
+  .footer-section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-section ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .footer-bottom {
+    text-align: center; 
+    padding-top: 10px;
+    background-color: #222;
+    font-size: 14px;
+  }
+
+  
+  
